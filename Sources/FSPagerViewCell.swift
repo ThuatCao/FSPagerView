@@ -40,6 +40,8 @@ open class FSPagerViewCell: UICollectionViewCell {
         }
         let imageView = UIImageView(frame: .zero)
         self.contentView.addSubview(imageView)
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 12
         _imageView = imageView
         return imageView
     }
@@ -102,8 +104,8 @@ open class FSPagerViewCell: UICollectionViewCell {
         self.contentView.backgroundColor = UIColor.clear
         self.backgroundColor = UIColor.clear
         self.contentView.layer.shadowColor = UIColor.black.cgColor
-        self.contentView.layer.shadowRadius = 5
-        self.contentView.layer.shadowOpacity = 0.75
+       // self.contentView.layer.shadowRadius = 5
+       // self.contentView.layer.shadowOpacity = 0.75
         self.contentView.layer.shadowOffset = .zero
     }
     
@@ -116,7 +118,7 @@ open class FSPagerViewCell: UICollectionViewCell {
     override open func layoutSubviews() {
         super.layoutSubviews()
         if let imageView = _imageView {
-            imageView.frame = self.contentView.bounds
+            imageView.frame = CGRect.init(x: 12, y: 12, width: self.contentView.bounds.width-24, height: self.contentView.bounds.height-36)
         }
         if let textLabel = _textLabel {
             textLabel.superview!.frame = {
